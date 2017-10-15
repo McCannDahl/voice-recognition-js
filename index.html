@@ -1,23 +1,24 @@
 <html>
    <head>
-      <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
    </head>
    <body>
    
    <h1 id="bigOne"></h1>
    
+   <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+
 	  <script>
 	  
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyDCGpw3syMt4kWNjiLZMm9Hq_YrclMt29c",
-			authDomain: "jsgps-aa2ba.firebaseapp.com",
-			databaseURL: "https://jsgps-aa2ba.firebaseio.com",
-			projectId: "jsgps-aa2ba",
-			storageBucket: "jsgps-aa2ba.appspot.com",
-			messagingSenderId: "270800279824"
-		};
-		firebase.initializeApp(config);
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDCGpw3syMt4kWNjiLZMm9Hq_YrclMt29c",
+    authDomain: "jsgps-aa2ba.firebaseapp.com",
+    databaseURL: "https://jsgps-aa2ba.firebaseio.com",
+    projectId: "jsgps-aa2ba",
+    storageBucket: "jsgps-aa2ba.appspot.com",
+    messagingSenderId: "270800279824"
+  };
+  firebase.initializeApp(config);
 		
 		var bigOne = document.getElementById('bigOne');
 		var dbRef = firebase.database().ref().child('text');
