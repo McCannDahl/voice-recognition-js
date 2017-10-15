@@ -1,189 +1,29 @@
-<!DOCTYPE html>
 <html>
-<body>
+   <head>
+      <script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+   </head>
+   <body>
+   
+   <h1 id="bigOne"></h1>
+   
+	  <script>
+	  
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyDCGpw3syMt4kWNjiLZMm9Hq_YrclMt29c",
+			authDomain: "jsgps-aa2ba.firebaseapp.com",
+			databaseURL: "https://jsgps-aa2ba.firebaseio.com",
+			projectId: "jsgps-aa2ba",
+			storageBucket: "jsgps-aa2ba.appspot.com",
+			messagingSenderId: "270800279824"
+		};
+		firebase.initializeApp(config);
+		
+		var bigOne = document.getElementById('bigOne');
+		var dbRef = firebase.database().ref().child('text');
+		dbRef.on('value', snap =+ bigOne.innerText = snap.val());
+		
+	  </script>
 
-<p>Click the button to get your coordinates.</p>
-
-<button onclick="getLocation()">Try It</button>
-
-<p id="firebase1"></p>
-<p id="firebase2"></p>
-<p id="firebase3"></p>
-<p id="firebase4"></p>
-<p id="firebase5"></p>
-<p id="var1"></p>
-<p id="var2"></p>
-<p id="var3"></p>
-<p id="var4"></p>
-<p id="var5"></p>
-<p id="demo"></p>
-
-
-<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
-<!-- This is from google
-<script>
-	var userId = 98;
-	var name = "bob whiley";
-	var count = 6;
-
-	var var1 = document.getElementById("var1");
-    var1.innerHTML = "<br> v3 "+userId+" "+name+" "+count;
-
-	var firebase1 = document.getElementById("firebase1");
-    firebase1.innerHTML = "<br>getting set up";
-	
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyDCGpw3syMt4kWNjiLZMm9Hq_YrclMt29c",
-		authDomain: "jsgps-aa2ba.firebaseapp.com",
-		databaseURL: "https://jsgps-aa2ba.firebaseio.com",
-		projectId: "jsgps-aa2ba",
-		storageBucket: "jsgps-aa2ba.appspot.com",
-		messagingSenderId: "270800279824"
-	};
-	firebase.initializeApp(config);
-  
-	var firebase2 = document.getElementById("firebase2");
-    firebase2.innerHTML = "<br>init complete";
-  
-	// Get a reference to the database service
-	var database = firebase.database();
-  
-  //how to write
-function writeUserData(userId, name, count) {
-	firebase.database().ref('users/' + userId).set({
-		username: name,
-		count: count
-	});
-	var firebase3 = document.getElementById("firebase3");
-	firebase3.innerHTML = "<br>write complete";
-}
-	writeUserData(userId, name, count);
-	var var2 = document.getElementById("var2");
-    var2.innerHTML = "<br>"+userId+" "+name+" "+count;
-
-	//This is a variable that updates automatically  
-	var starCountRef = firebase.database().ref('users/' + userId + '/count');
-	starCountRef.on('value', function(snapshot) {
-		//updateStarCount(postElement, snapshot.val());
-		var firebase4 = document.getElementById("firebase4");
-		firebase4.innerHTML = "<br>updating - read";
-	});
-	var var3 = document.getElementById("var3");
-    var3.innerHTML = "<br>"+userId+" "+name+" "+count+" "+starCountRef;
-
-//updateing
-function writeNewPost(userId, name, count) {
-	// A post entry.
-	var postData = {
-		username: name,
-		count: count
-	};
-
-	// Get a key for a new Post.
-	var newPostKey = firebase.database().ref().child('posts').push().key;
-
-	// Write the new post's data simultaneously in the posts list and the user's post list.
-	var updates = {};
-	updates['/users/' + uid] = postData;
-	
-	var firebase5 = document.getElementById("firebase5");
-    firebase5.innerHTML = "<br>updating - write";
-
-	return firebase.database().ref().update(updates);
-}
-	writeNewPost(userId, name, count);
-	var var4 = document.getElementById("var4");
-    var4.innerHTML = "<br>"+writeNewPost(userId, name, count);
-	
-	var var5 = document.getElementById("var5");
-    var5.innerHTML = "<br>done";
-
-</script>
--->
-
-<script>
-	var userId = 98;
-	var name = "bob whiley";
-	var count = 6;
-
-	var var1 = document.getElementById("var1");
-    var1.innerHTML = "<br> v3 "+userId+" "+name+" "+count;
-
-	var firebase1 = document.getElementById("firebase1");
-    firebase1.innerHTML = "<br>getting set up";
-	
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyDCGpw3syMt4kWNjiLZMm9Hq_YrclMt29c",
-		authDomain: "jsgps-aa2ba.firebaseapp.com",
-		databaseURL: "https://jsgps-aa2ba.firebaseio.com",
-		projectId: "jsgps-aa2ba",
-		storageBucket: "jsgps-aa2ba.appspot.com",
-		messagingSenderId: "270800279824"
-	};
-	firebase.initializeApp(config);
-	
-	var firebaseRef = new Firebase('https://jsgps-aa2ba.firebaseio.com');
-firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
-  if (connectedSnap.val() === true) {
-	var var5 = document.getElementById("var5");
-    var5.innerHTML = "<br>connected";
-  } else {
-	var var5 = document.getElementById("var5");
-    var5.innerHTML = "<br>disconnected";
-  }
-});
-
-var ref = firebase.database().ref();                           
-ref.on("value", function(snapshot){
-	var var4 = document.getElementById("var4");
-    var4.innerHTML = JSON.stringify(snapshot.val(), null, 2);
-});
-  
-	var firebase2 = document.getElementById("firebase2");
-    firebase2.innerHTML = "<br>init complete";
-  
-	// Get a reference to the database service
-	var database = firebase.database();
-	
-var playersRef = firebase.database().ref("users/");
-
-playersRef.set ({
-   John: {
-      count: 1
-   },
-	
-   Amanda: {
-      count: 2
-   }
-});
-
-var johnRef = firebase.database().ref("users/John");
-
-johnRef.update ({
-   "count": 10
-});
-
-</script>
-
-
-<script>
-var x = document.getElementById("demo");
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
-function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
-}
-</script>
-
-</body>
+   </body>
 </html>
