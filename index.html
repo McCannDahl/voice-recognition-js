@@ -20,6 +20,7 @@
 
 
 <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+<!-- This is from google
 <script>
 	var userId = 98;
 	var name = "bob whiley";
@@ -99,7 +100,55 @@ function writeNewPost(userId, name, count) {
     var5.innerHTML = "<br>done";
 
 </script>
+-->
 
+<script>
+	var userId = 98;
+	var name = "bob whiley";
+	var count = 6;
+
+	var var1 = document.getElementById("var1");
+    var1.innerHTML = "<br> v3 "+userId+" "+name+" "+count;
+
+	var firebase1 = document.getElementById("firebase1");
+    firebase1.innerHTML = "<br>getting set up";
+	
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyDCGpw3syMt4kWNjiLZMm9Hq_YrclMt29c",
+		authDomain: "jsgps-aa2ba.firebaseapp.com",
+		databaseURL: "https://jsgps-aa2ba.firebaseio.com",
+		projectId: "jsgps-aa2ba",
+		storageBucket: "jsgps-aa2ba.appspot.com",
+		messagingSenderId: "270800279824"
+	};
+	firebase.initializeApp(config);
+  
+	var firebase2 = document.getElementById("firebase2");
+    firebase2.innerHTML = "<br>init complete";
+  
+	// Get a reference to the database service
+	var database = firebase.database();
+	
+var playersRef = firebase.database().ref("users/");
+
+playersRef.set ({
+   John: {
+      count: 1
+   },
+	
+   Amanda: {
+      count: 2
+   }
+});
+
+var johnRef = firebase.database().ref("users/John");
+
+johnRef.update ({
+   "count": 10
+});
+
+</script>
 
 
 <script>
