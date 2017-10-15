@@ -123,6 +123,23 @@ function writeNewPost(userId, name, count) {
 		messagingSenderId: "270800279824"
 	};
 	firebase.initializeApp(config);
+	
+	var firebaseRef = new Firebase('https://jsgps-aa2ba.firebaseio.com');
+firebaseRef.child('.info/connected').on('value', function(connectedSnap) {
+  if (connectedSnap.val() === true) {
+	var var5 = document.getElementById("var5");
+    var5.innerHTML = "<br>connected";
+  } else {
+	var var5 = document.getElementById("var5");
+    var5.innerHTML = "<br>disconnected";
+  }
+});
+
+var ref = firebase.database().ref();                           
+ref.on("value", function(snapshot){
+	var var4 = document.getElementById("var4");
+    var4.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+});
   
 	var firebase2 = document.getElementById("firebase2");
     firebase2.innerHTML = "<br>init complete";
