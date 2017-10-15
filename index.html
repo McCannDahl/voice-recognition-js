@@ -6,7 +6,98 @@
 
 <button onclick="getLocation()">Try It</button>
 
+<p id="firebase1"></p>
+<p id="firebase2"></p>
+<p id="firebase3"></p>
+<p id="firebase4"></p>
+<p id="firebase5"></p>
+<p id="var1"></p>
+<p id="var2"></p>
+<p id="var3"></p>
+<p id="var4"></p>
+<p id="var5"></p>
 <p id="demo"></p>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+<script>
+	var userId = 98;
+	var name = "bob whiley";
+	var count = "6";
+
+	var var1 = document.getElementById("var1");
+    var1.innerHTML = "<br>"+userId+" "+name+" "+count;
+
+	var firebase1 = document.getElementById("firebase1");
+    firebase1.innerHTML = "<br>getting set up";
+	
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyDCGpw3syMt4kWNjiLZMm9Hq_YrclMt29c",
+		authDomain: "jsgps-aa2ba.firebaseapp.com",
+		databaseURL: "https://jsgps-aa2ba.firebaseio.com",
+		projectId: "jsgps-aa2ba",
+		storageBucket: "jsgps-aa2ba.appspot.com",
+		messagingSenderId: "270800279824"
+	};
+	firebase.initializeApp(config);
+  
+	var firebase2 = document.getElementById("firebase2");
+    firebase2.innerHTML = "<br>init complete";
+  
+	// Get a reference to the database service
+	var database = firebase.database();
+  
+  //how to write
+function writeUserData(userId, name, count) {
+	firebase.database().ref('users/' + userId).set({
+		username: name,
+		count: count
+	});
+	var firebase3 = document.getElementById("firebase3");
+	firebase3.innerHTML = "<br>write complete";
+}
+	writeUserData(userId, name, count);
+	var var2 = document.getElementById("var2");
+    var2.innerHTML = "<br>"+userId+" "+name+" "+count;
+
+	//This is a variable that updates automatically  
+	var starCountRef = firebase.database().ref('users/' + userId + '/count');
+	starCountRef.on('value', function(snapshot) {
+		//updateStarCount(postElement, snapshot.val());
+		var firebase4 = document.getElementById("firebase4");
+		firebase4.innerHTML = "<br>updating - read";
+	});
+	var var3 = document.getElementById("var3");
+    var3.innerHTML = "<br>"+userId+" "+name+" "+count+" "+starCountRef;
+
+//updateing
+function writeNewPost(userId, name, count) {
+	// A post entry.
+	var postData = {
+		username: name,
+		count: count
+	};
+
+	// Get a key for a new Post.
+	var newPostKey = firebase.database().ref().child('posts').push().key;
+
+	// Write the new post's data simultaneously in the posts list and the user's post list.
+	var updates = {};
+	updates['/users/' + uid] = postData;
+	
+	var firebase5 = document.getElementById("firebase5");
+    firebase5.innerHTML = "<br>updating - write";
+
+	return firebase.database().ref().update(updates);
+}
+	writeNewPost(userId, name, count);
+	var var4 = document.getElementById("var4");
+    var4.innerHTML = "<br>"+userId+" "+name+" "+count+" "+starCountRef;
+
+</script>
+
+
 
 <script>
 var x = document.getElementById("demo");
