@@ -1,4 +1,4 @@
-
+<script>
 var fs = require("fs");
 
 // Asynchronous read
@@ -102,3 +102,4 @@ fs.open('database.txt', 'r+', function(err, fd) {
       });
    });
 });
+</script>
