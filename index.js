@@ -1,11 +1,4 @@
-<html>
-   <head>
-   </head>
-   <body>
-   
-   <h1 id="bigOne"></h1>
-   
-	  <script>
+
 var fs = require("fs");
 
 // Asynchronous read
@@ -109,7 +102,3 @@ fs.open('database.txt', 'r+', function(err, fd) {
       });
    });
 });
-	  </script>
-
-   </body>
-</html>
