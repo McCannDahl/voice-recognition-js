@@ -1,0 +1,83 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+<script>
+	
+function speak(text) {
+	try {
+	var msg = new SpeechSynthesisUtterance(text);
+window.speechSynthesis.speak(msg);
+	} catch(e) {
+		console.log(e);
+	}
+	alert(text);
+}
+
+if (annyang) {
+  // Let's define our first command. First the text we expect, and then the function it should call
+  var commands = {
+    'hello world': function() {
+	speak("hello world =D");
+    },
+    'hola mundo': function() {
+	speak("hola mundo!!!");
+    },
+    'buongiorno': function() {
+    	speak("loading pizza...");
+    },
+    '你好|Nǐ hǎo': function() {
+    	speak("wan tun frito :v");
+    },
+    'hola me llamo *name': function(name) {
+    	speak("hola "+name+" eres el mejor :)");
+    },
+	  '*what': function(what) {
+		document.getElementById("p1").innerHTML = what + " "
+	  }
+  };
+
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+
+  // Start listening. You can call this here, or attach this call to an event, button, etc.
+  annyang.start();
+}
+</script>
+
+<html>
+<title>McCann Dahl</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-row-padding img {margin-bottom: 12px}
+/* Remove margins from "page content" on small screens */
+@media only screen and (max-width: 600px) {#main {margin-left: 0}}
+
+.rotate90 {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+</style>
+<body class="w3-black">
+
+<!-- Page Content -->
+<div class="w3-padding-large" id="main">
+  <!-- Header/Home -->
+  <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
+    <h1 class="w3-jumbo"><span class="w3-hide-small"></span>McCann Dahl</h1>
+    <p>Ask me a question using your computer microphone</p>
+    <img src="guapo.jpg" alt="boy" class="w3-image rotate90" width="992" height="1108">
+    <p id="p1">.....waiting for voice input</p>
+  </header>
+  
+
+<!-- END PAGE CONTENT -->
+</div>
+
+</body>
+</html>
